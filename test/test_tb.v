@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module test_tb;
 
   reg clk = 0;
@@ -8,7 +6,6 @@ module test_tb;
   reg [3:0] digit;
   wire unlocked;
 
-  // Instancia del módulo bajo prueba
   top uut (
     .clk(clk),
     .reset(reset),
@@ -17,25 +14,23 @@ module test_tb;
     .unlocked(unlocked)
   );
 
-  // Reloj
   always #5 clk = ~clk;
 
-  // Simulación
   initial begin
-  $dumpfile("test.vcd");      // 👈 Genera el archivo de simulación
-  $dumpvars(0, test_tb);      // 👈 Especifica qué señales registrar
+    $dumpfile("test.vcd");
+    $dumpvars(0, test_tb);
 
-  reset = 1; #10; reset = 0;
+    reset = 1; #10; reset = 0;
 
-  digit = 4'd9; enter = 1; #10; enter = 0; #10;
-  digit = 4'd9; enter = 1; #10; enter = 0; #10;
-  digit = 4'd7; enter = 1; #10; enter = 0; #10;
-  digit = 4'd9; enter = 1; #10; enter = 0; #10;
+    digit = 4'd9; enter = 1; #10; enter = 0; #10;
+    digit = 4'd9; enter = 1; #10; enter = 0; #10;
+    digit = 4'd7; enter = 1; #10; enter = 0; #10;
+    digit = 4'd9; enter = 1; #10; enter = 0; #10;
 
-  #20;
-  $finish;
-end
-
+    #20;
+    $finish;
+  end
 
 endmodule
+
 
