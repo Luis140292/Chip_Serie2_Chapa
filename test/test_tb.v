@@ -22,20 +22,20 @@ module test_tb;
 
   // Simulación
   initial begin
-    $dumpfile("test.vcd");      // 🔴 NECESARIO: genera el archivo que Wokwi busca
-    $dumpvars(0, test_tb);      // 🔴 NECESARIO
+  $dumpfile("test.vcd");      // 👈 Genera el archivo de simulación
+  $dumpvars(0, test_tb);      // 👈 Especifica qué señales registrar
 
-    // Secuencia de prueba: reset + PIN 9979
-    reset = 1; #10; reset = 0;
+  reset = 1; #10; reset = 0;
 
-    digit = 4'd9; enter = 1; #10; enter = 0; #10;
-    digit = 4'd9; enter = 1; #10; enter = 0; #10;
-    digit = 4'd7; enter = 1; #10; enter = 0; #10;
-    digit = 4'd9; enter = 1; #10; enter = 0; #10;
+  digit = 4'd9; enter = 1; #10; enter = 0; #10;
+  digit = 4'd9; enter = 1; #10; enter = 0; #10;
+  digit = 4'd7; enter = 1; #10; enter = 0; #10;
+  digit = 4'd9; enter = 1; #10; enter = 0; #10;
 
-    #20;
-    $finish;
-  end
+  #20;
+  $finish;
+end
+
 
 endmodule
 
