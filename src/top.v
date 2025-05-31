@@ -6,7 +6,6 @@ module top (
   output reg unlocked
 );
 
-  // Estados como parámetros (Verilog puro)
   parameter IDLE = 3'd0;
   parameter S1   = 3'd1;
   parameter S2   = 3'd2;
@@ -18,18 +17,16 @@ module top (
   reg [2:0] next_state;
   reg match;
 
-  // Comparación Mealy
   always @(*) begin
     case (state)
       IDLE: match = (digit == 4'd9);
       S1:   match = (digit == 4'd9);
       S2:   match = (digit == 4'd7);
       S3:   match = (digit == 4'd9);
-      default: match = 1'b0;
+      default: match = 0;
     endcase
   end
 
-  // Transiciones FSM
   always @(posedge clk or posedge reset) begin
     if (reset)
       state <= IDLE;
@@ -49,11 +46,11 @@ module top (
     endcase
   end
 
-  // Salida Moore
   always @(*) begin
     unlocked = (state == OK);
   end
 
 endmodule
+
 
 
