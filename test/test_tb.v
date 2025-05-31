@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps  // 👈 IMPORTANTE
+
 module test_tb;
 
   reg clk = 0;
@@ -32,5 +34,3 @@ module test_tb;
   end
 
 endmodule
-
-
